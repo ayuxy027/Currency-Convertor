@@ -1,19 +1,22 @@
 import { useEffect, useState } from "react";
 
-function currencyConverter(currency) {
+function useCurrencyInfo(currency) {
   const [data, setData] = useState({});
-  console.log("workinn");
+
   useEffect(() => {
-    console.log("Changed from !!");
     fetch(
       `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${currency}.json`
     )
-      //response first converted into JSON
       .then((res) => res.json())
-      .then((data) => setData(data[currency]));
+      .then((res) => setData(res[currency]))
+      .catch((err) => console.error(err));
   }, [currency]);
-  // console.log(data.inr)
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
   return data;
 }
 
-export default currencyConverter;
+export default useCurrencyInfo;
