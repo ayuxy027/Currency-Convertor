@@ -12,10 +12,6 @@ function useCurrencyInfo(currency) {
       .catch((err) => console.error(err));
   }, [currency]);
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
   return data;
 }
 
